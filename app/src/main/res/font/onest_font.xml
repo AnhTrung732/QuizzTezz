@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<font-family xmlns:app="http://schemas.android.com/apk/res-auto">
+    <font
+        app:font="@font/onestblack" />
+    <font
+        app:font="@font/onestbold" />
+    <font
+        app:font="@font/onestextrabold" />
+    <font
+        app:font="@font/onestlight" />
+    <font
+        app:font="@font/onestmedium" />
+    <font
+        app:font="@font/onestregular" />
+    <font
+        app:font="@font/onestthin" />
+</font-family>
