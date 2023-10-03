@@ -16,12 +16,17 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.paging.ExperimentalPagingApi
+import com.example.quizztezz.model.Quiz
 import com.example.quizztezz.screens.playquiz.Quiz.Component.CardItem
 import com.example.quizztezz.theme.OnestFont
 import com.example.quizztezz.theme.listColor
+import kotlinx.coroutines.flow.first
+import javax.inject.Inject
 
 @Composable
-fun MultipleChoiceQuiz(quizType: QuizType.MultipleChoice, modifier : Modifier = Modifier) {
+fun MultipleChoiceQuiz(quiz: Quiz, modifier : Modifier = Modifier) {
     // Implement the UI for rendering a multiple-choice quiz here
     Column(
         modifier = modifier
@@ -36,7 +41,7 @@ fun MultipleChoiceQuiz(quizType: QuizType.MultipleChoice, modifier : Modifier = 
                 modifier = Modifier
                     .weight(1f)
                     .padding(4.dp,0.dp),
-                text = quizType.options[0],
+                text = quiz.answer.listAnswers.answer_a,
                 pairColors = listColor[0]
 
             ) {}
@@ -44,7 +49,7 @@ fun MultipleChoiceQuiz(quizType: QuizType.MultipleChoice, modifier : Modifier = 
                 modifier = Modifier
                     .weight(1f)
                     .padding(4.dp, 0.dp),
-                text = quizType.options[1],
+                text = quiz.answer.listAnswers.answer_b,
                 pairColors = listColor[1]
             ) {}
         }
@@ -61,7 +66,7 @@ fun MultipleChoiceQuiz(quizType: QuizType.MultipleChoice, modifier : Modifier = 
                 modifier = Modifier
                     .weight(1f)
                     .padding(4.dp, 0.dp),
-                text = quizType.options[2],
+                text = quiz.answer.listAnswers.answer_c,
                 pairColors = listColor[2]
             ) {}
 
@@ -69,7 +74,7 @@ fun MultipleChoiceQuiz(quizType: QuizType.MultipleChoice, modifier : Modifier = 
                 modifier = Modifier
                     .weight(1f)
                     .padding(4.dp, 0.dp),
-                text = quizType.options[3],
+                text = quiz.answer.listAnswers.answer_d,
                 pairColors = listColor[3]
             ) {}
         }
@@ -78,13 +83,9 @@ fun MultipleChoiceQuiz(quizType: QuizType.MultipleChoice, modifier : Modifier = 
 
 
 
+@OptIn(ExperimentalPagingApi::class)
 @Composable
 @Preview
-fun AnswerTypePreview() {
-    val multipleChoiceQuiz = QuizType.MultipleChoice(
-        question = "What is the capital of France?",
-        options = listOf("Paris", "Berlin", "Madrid", "Rome"),
-        correctAnswerIndex = 1
-    )
-    MultipleChoiceQuiz(multipleChoiceQuiz)
+fun AnswerTypePreview(quizScreenViewModel: QuizScreenViewModel = hiltViewModel()) {
+
 }
